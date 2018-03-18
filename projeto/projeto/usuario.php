@@ -179,14 +179,17 @@
                                             $sql = "select * from usuario order by nome ASC";
                                             $consulta = mysqli_query($conexao, $sql);
                                             while($linha = mysqli_fetch_array($consulta)){
-                                                $nomeCurso = mysqli_fetch_array(mysqli_query($conexao, "select * from 'curso' where 'id' = $linha['curso']"));
+                                                $idCurso = (int) $linha['curso'];
+                                                $sql2 = "select * from curso where id = $idCurso";
+                                                $consulta2 = mysqli_query($conexao, $sql2);
+                                                $nomeCurso = mysqli_fetch_array($consulta2);
                                         ?>
                                         <tr>
                                             <td><?php echo $linha['id'] ?></td>
                                             <td><?php echo $linha['nome'] ?></td>
                                             <td><?php echo $linha['email'] ?></td>
                                             <td><?php echo $linha['assuntos'] ?></td>
-                                            <td><?php echo $linha['curso'] ?></td>
+                                            <td><?php echo $nomeCurso['nome'] ?></td>
                                             <td>
                                                 <a href="./usuario.php?id=<?php echo $linha['id']?>">Editar</a>
                                                 <br />

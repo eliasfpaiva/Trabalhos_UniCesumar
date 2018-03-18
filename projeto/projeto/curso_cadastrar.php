@@ -7,6 +7,7 @@
 
 	$nome = $_POST["nome"];
 	$descricao = $_POST["descricao"];
+	
 
 	$sql = "INSERT INTO curso (nome, descricao) 
 		VALUES ('$descricao', '$descricao')
