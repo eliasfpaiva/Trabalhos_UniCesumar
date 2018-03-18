@@ -89,8 +89,6 @@
                                     </div>
                                     <?php } ?>
 
-
-
                                     <form role="form" action="<?php echo $action ?>" method="POST">
                                         <div class="form-group">
                                             <label>Nome</label>
@@ -131,8 +129,7 @@
                                                 ?>
                                                 <div class="radio">
                                                     <label>                                                        
-                                                        <input type="radio" name="curso" value=$linha['id']><?php echo $linha['nome'].$linha['id']; ?>
-                                                        
+                                                        <input type="radio" name="curso" value = <?php echo $linha['id']?> ><?php echo $linha['nome']?>
                                                     </label>
                                                 </div>
                                                 <?php
@@ -141,6 +138,7 @@
                                         </div>
                                         <button type="submit" class="btn btn-active" >Cadastrar</button>
                                     </form>
+
                                 </div>
                                 <!-- /.col-lg-12 (nested) -->    
                             </div>
@@ -181,6 +179,7 @@
                                             $sql = "select * from usuario order by nome ASC";
                                             $consulta = mysqli_query($conexao, $sql);
                                             while($linha = mysqli_fetch_array($consulta)){
+                                                $nomeCurso = mysqli_fetch_array(mysqli_query($conexao, "select * from 'curso' where 'id' = $linha['curso']"));
                                         ?>
                                         <tr>
                                             <td><?php echo $linha['id'] ?></td>
