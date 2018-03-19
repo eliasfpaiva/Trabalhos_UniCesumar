@@ -1,9 +1,11 @@
 <?php
+
         $action = "usuario_cadastrar.php";
         $linha = array(
             "nome" => null,
             "email" => null
         );
+
         if(! empty($_GET['id'])){
             $id = $_GET['id'];
             include "../includes/conexao.php";
@@ -13,12 +15,11 @@
 
             $action = "usuario_editar.php?id=$id";
         }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,6 +40,13 @@
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- Função JavaScript -->
+    <script type="text/javascript">
+        function atualizaLista(){
+            alert("Eu sou um alert");
+        }
+    </script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -47,9 +55,7 @@
     <![endif]-->
 
 </head>
-
 <body>
-
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -58,9 +64,9 @@
                 <a class="navbar-brand" href="index.html">MAPA - EAD UniCesumar</a>
                 <a class="navbar-brand" href="../../dashboard">HOME</a>
             </div>
+
             <!-- /.navbar-header -->
         </nav>
-
         <div id="page-wrapper" style="margin-left:0px">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
@@ -78,7 +84,6 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-
                                     <?php if(isset($_GET["mensagem"]) && $_GET["mensagem"]=="sucesso"){ ?>
                                     <div class="alert alert-success">
                                         Usuário cadastrado com sucesso
@@ -88,7 +93,6 @@
                                         Não foi possível realizar o cadastro
                                     </div>
                                     <?php } ?>
-
                                     <form role="form" action="<?php echo $action ?>" method="POST">
                                         <div class="form-group">
                                             <label>Nome</label>
@@ -128,8 +132,8 @@
                                                     while($linha = mysqli_fetch_array($consulta)){
                                                 ?>
                                                 <div class="radio">
-                                                    <label>                                                        
-                                                        <input type="radio" name="curso" value = <?php echo $linha['id']?> ><?php echo $linha['nome']?>
+                                                    <label>
+                                                        <input type="radio" ="alutalizaListaCursos()" name="curso" value = <?php echo $linha['id']?> ><?php echo $linha['nome']?>
                                                     </label>
                                                 </div>
                                                 <?php
@@ -138,9 +142,8 @@
                                         </div>
                                         <button type="submit" class="btn btn-active" >Cadastrar</button>
                                     </form>
-
                                 </div>
-                                <!-- /.col-lg-12 (nested) -->    
+                                <!-- /.col-lg-12 (nested) -->
                             </div>
                             <!-- /.row (nested) -->
                         </div>
@@ -151,7 +154,6 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                      <div class="panel panel-default">
@@ -176,8 +178,9 @@
                                         <?php
                                             include '../includes/conexao.php';
 
-                                            $sql = "select * from usuario order by nome ASC";
-                                            $consulta = mysqli_query($conexao, $sql);
+
+                                            $sqlUsuarios = "select * from usuario order by nome ASC";
+                                            $consulta = mysqli_query($conexao, $sqlUsuarios);
                                             while($linha = mysqli_fetch_array($consulta)){
                                                 $idCurso = (int) $linha['curso'];
                                                 $sql2 = "select * from curso where id = $idCurso";
@@ -207,10 +210,8 @@
                     </div>
                 </div>
             </div>
-            
         </div>
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
 
@@ -225,7 +226,5 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
 </body>
-
 </html>

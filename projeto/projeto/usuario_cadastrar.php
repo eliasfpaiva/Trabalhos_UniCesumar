@@ -10,7 +10,6 @@
 	$assuntos = $_POST["assuntos"];
 	$assuntos_string = implode(", ", $assuntos);
 	$curso = $_POST["curso"];
-	//$curso_string = implode(", ", $curso);
 
 	$sql = "INSERT INTO usuario (nome, email, assuntos, curso) 
 		VALUES ('$nome', '$email', '$assuntos_string', '$curso')

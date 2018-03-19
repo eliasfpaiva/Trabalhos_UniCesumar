@@ -10,7 +10,7 @@
 	
 
 	$sql = "INSERT INTO curso (nome, descricao) 
-		VALUES ('$descricao', '$descricao')
+		VALUES ('$nome', '$descricao')
 	";
 
 

@@ -7,7 +7,7 @@
 	$nome = $_POST["nome"];
 	$descricao = $_POST["descricao"];
 
-	echo $sql = "UPDATE curso set
+	$sql = "UPDATE curso set
 		nome = '$nome',
 		descricao = '$descricao'
 

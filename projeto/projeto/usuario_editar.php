@@ -8,11 +8,13 @@
 	$email = $_POST["email"];
 	$assuntos = $_POST["assuntos"];
 	$assuntos_string = implode(", ", $assuntos);
+	$curso = (int) $_POST["curso"];
 
-	echo $sql = "UPDATE usuario set
+	$sql = "UPDATE usuario set
 		nome = '$nome',
 		email = '$email',
-		assuntos = '$assuntos_string'
+		assuntos = '$assuntos_string',
+		curso = '$curso'
 
 		WHERE id = $id
 	";
