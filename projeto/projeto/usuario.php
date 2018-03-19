@@ -42,10 +42,23 @@
 
     <!-- Função JavaScript -->
     <script type="text/javascript">
-        function atualizaLista(){
-            alert("Eu sou um alert");
+
+        function carregaTabela(){
+
+            $( "#tabela_cursos" ).load( "../projeto/tabela_cursos.php" );
         }
+
+        function carregaTabela(idCurso){
+
+            $( "#tabela_cursos" ).load("../projeto/tabela_cursos.php",  function() {
+                
+            });
+        }
+
+        function hello(nome){alert(nome);}
     </script>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -133,7 +146,7 @@
                                                 ?>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" ="alutalizaListaCursos()" name="curso" value = <?php echo $linha['id']?> ><?php echo $linha['nome']?>
+                                                        <input type="radio" onclick="carregaTabela(<?php echo $linha['id']?>)" name="curso" value = <?php echo $linha['id']?> ><?php echo $linha['nome']?>
                                                     </label>
                                                 </div>
                                                 <?php
@@ -153,62 +166,11 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Relatório de Usuários
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Nome</th>
-                                            <th>Email</th>
-                                            <th>Assuntos</th>
-                                            <th>Curso</th>
-                                            <th>-</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                            include '../includes/conexao.php';
-
-
-                                            $sqlUsuarios = "select * from usuario order by nome ASC";
-                                            $consulta = mysqli_query($conexao, $sqlUsuarios);
-                                            while($linha = mysqli_fetch_array($consulta)){
-                                                $idCurso = (int) $linha['curso'];
-                                                $sql2 = "select * from curso where id = $idCurso";
-                                                $consulta2 = mysqli_query($conexao, $sql2);
-                                                $nomeCurso = mysqli_fetch_array($consulta2);
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $linha['id'] ?></td>
-                                            <td><?php echo $linha['nome'] ?></td>
-                                            <td><?php echo $linha['email'] ?></td>
-                                            <td><?php echo $linha['assuntos'] ?></td>
-                                            <td><?php echo $nomeCurso['nome'] ?></td>
-                                            <td>
-                                                <a href="./usuario.php?id=<?php echo $linha['id']?>">Editar</a>
-                                                <br />
-                                                <a href="./usuario_excluir.php?id=<?php echo $linha['id']?>">Excluir</a></td>
-                                        </tr>
-                                        <?php
-                                            } // fim do while
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                </div>
+            <!-- /.row -->            
+            <div class="row" id="tabela_cursos">
+                <script class="col-lg-6" >
+                    carregaTabela();
+                </script>
             </div>
         </div>
         <!-- /#page-wrapper -->
