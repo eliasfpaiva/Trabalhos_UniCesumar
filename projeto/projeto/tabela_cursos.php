@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +37,7 @@
                 <div class="col-md-6 col-md-offset-3">
                      <div class="panel panel-default">
                         <div class="panel-heading">
-                            Relatório de Usuários
+                            Relatório de Usuários + <?php echo $idCurso; ?>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

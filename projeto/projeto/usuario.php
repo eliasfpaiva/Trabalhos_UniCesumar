@@ -134,24 +134,24 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                                <thead>
-                                                    <label> Cursos disponíveis - Selecione um deles:</label>
-                                                </thead>
-                                                <?php
-                                                    include '../includes/conexao.php';
+                                            <thead>
+                                                <label> Cursos disponíveis - Selecione um deles:</label>
+                                            </thead>
+                                            <?php
+                                                include '../includes/conexao.php';
 
-                                                    $sql = "select * from curso order by nome ASC";
-                                                    $consulta = mysqli_query($conexao, $sql);
-                                                    while($linha = mysqli_fetch_array($consulta)){
-                                                ?>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" onclick="carregaTabela(<?php echo $linha['id']?>)" name="curso" value = <?php echo $linha['id']?> ><?php echo $linha['nome']?>
-                                                    </label>
-                                                </div>
-                                                <?php
-                                                    } // fim do while
-                                                ?>
+                                                $sql = "select * from curso order by nome ASC";
+                                                $consulta = mysqli_query($conexao, $sql);
+                                                while($linha = mysqli_fetch_array($consulta)){
+                                            ?>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" onclick="carregaTabela(<?php echo $linha['id']?>)" name="curso" value = <?php echo $linha['id']?> ><?php echo $linha['nome']?>
+                                                </label>
+                                            </div>
+                                            <?php
+                                                } // fim do while
+                                            ?>
                                         </div>
                                         <button type="submit" class="btn btn-active" >Cadastrar</button>
                                     </form>
